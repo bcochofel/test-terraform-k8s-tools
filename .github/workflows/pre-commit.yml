@@ -14,4 +14,6 @@ jobs:
       - uses: actions/checkout@v4
       # hack to be able to execute pre-commit in the container
       - run: git config --global --add safe.directory '*'
+      - run: pip3 install yamllint
+      - run: pip3 install kubernetes-validate
       - run: pre-commit run --all-files

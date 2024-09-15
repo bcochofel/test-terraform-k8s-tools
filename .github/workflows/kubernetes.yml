@@ -1,0 +1,29 @@
+name: Kubernetes
+on: [pull_request]
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  validate:
+    name: Kubernetes Validation
+    runs-on: ubuntu-latest
+    container:
+      image: bcochofel/kube-tools:1.1.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: kubeconform
+        run: |
+            kubeconform -schema-location default \
+              -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
+              -summary -strict kubernetes/
+      - name: kube-score
+        run: kube-score score kubernetes/*.yaml
+      - name: polaris
+        env:
+          K8S_POLARIS_SCORE: ${{ secrets.K8S_POLARIS_SCORE }}
+        run: |
+            polaris audit \
+            --set-exit-code-on-danger \
+            --set-exit-code-below-score ${K8S_POLARIS_SCORE} \
+            --audit-path kubernetes/

@@ -24,6 +24,16 @@ repos:
         files: ^infrastructure/
       - id: tflint
         files: ^infrastructure/.*\.tf
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.17.0
+    hooks:
+      - id: yamllint
+        args: [-c=.yamllint]
+  - repo: https://github.com/Agilicus/pre-commit-hook-k8svalidate.git
+    rev: v0.0.8
+    hooks:
+      - id: k8svalidate
+        files: .yaml$
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v2.4.0
     hooks:
