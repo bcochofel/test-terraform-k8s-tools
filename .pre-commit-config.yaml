@@ -22,9 +22,6 @@ repos:
     hooks:
       - id: terraform-validate
         files: ^infrastructure/
-      - id: goimports
-      - id: gofmt
-      - id: golint
       - id: tflint
         files: ^infrastructure/.*\.tf
   - repo: https://github.com/compilerla/conventional-pre-commit
