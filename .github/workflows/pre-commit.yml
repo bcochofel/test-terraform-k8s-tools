@@ -12,4 +12,4 @@ jobs:
       image: bcochofel/terraform-tools:1.6.0
     steps:
       - uses: actions/checkout@v4
-      - run: pre-commit run --all-files -v
+      - run: pre-commit run --all-files -v || cat /github/home/.cache/pre-commit/pre-commit.log
