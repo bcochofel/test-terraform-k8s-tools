@@ -12,5 +12,4 @@ jobs:
       image: bcochofel/terraform-tools:1.6.0
     steps:
       - uses: actions/checkout@v4
-      - run: ls -al
-      - run: pre-commit run --all-files
+      - run: pre-commit run --all-files -v
