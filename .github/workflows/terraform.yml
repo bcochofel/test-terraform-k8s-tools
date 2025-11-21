@@ -11,5 +11,5 @@ jobs:
     container:
       image: bcochofel/terraform-tools:1.6.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: terraform -chdir=infrastructure/ init
