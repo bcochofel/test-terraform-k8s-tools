@@ -11,7 +11,7 @@ jobs:
     container:
       image: bcochofel/terraform-tools:1.6.1
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       # hack to be able to execute pre-commit in the container
       - run: git config --global --add safe.directory '*'
       - run: pip3 install yamllint
